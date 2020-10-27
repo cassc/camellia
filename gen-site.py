@@ -16,7 +16,11 @@ company = [dict(val='北京xxx有限公司',    ky='title.full', desc='公司全
            dict(val='javascript:;',       ky='ensite', desc='公司全名'),
 
            # 备案号
-           dict(val='粤ICP备88888888号',  ky='beianhao', desc='公司全名'),           
+           dict(val='粤ICP备88888888号',  ky='beianhao', desc='公司全名'),
+
+           # 电商n链接
+           dict(val='',  ky='shop.title', desc='电商名'),
+           dict(val='',  ky='shop.link', desc='电商链接'),
            ]
 
 import argparse
@@ -30,17 +34,13 @@ args = vars(ap.parse_args())
 copy_db = args['create_database']
 
 
-copy_tree("be", "output/be", preserve_symlinks=1)
-copy_tree("fe", "output/fe", preserve_symlinks=1)
-
-os.makedirs('target/be', exist_ok=True)
-os.makedirs('target/fe', exist_ok=True)
-
 def run_cmd(cmd):
     print(f'Run: {cmd}')
     os.system(cmd)
 
 def replace_string(frm, to):
+    frm = frm.replace(r'/', r'\/')
+    to = to.replace(r'/', r'\/')
     run_cmd(f"grep -rl '{frm}' ./output | xargs sed -i 's/{frm}/{to}/g'")
 
 def replace_keys(pairs):
@@ -74,12 +74,14 @@ def copy_to_target():
     copy_tree("output/fe/css/", 'target/fe/css/', preserve_symlinks=1)
     
     
+if __name__=='__main__':
+    copy_tree("be", "output/be", preserve_symlinks=1)
+    copy_tree("fe", "output/fe", preserve_symlinks=1)
 
+    os.makedirs('target/be', exist_ok=True)
+    os.makedirs('target/fe', exist_ok=True)
 
-replace_keys(company)
-
-build_be()
-
-build_fe()
-
-copy_to_target()
+    replace_keys(company)
+    build_be()
+    build_fe()
+    copy_to_target()
