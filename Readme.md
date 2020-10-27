@@ -1,5 +1,12 @@
 # A company webstie with Go
 
+
+<div style="display:flex; justify-content: space-between; align-items: top;">
+  <img src="camellia-1.jpg"/>
+  <img src="camellia-2.jpg"/>
+  <img src="camellia-3.jpg"/>
+</div>
+
 ## Requirements
 
 You will need to install Go, Python 3 and Node.js.
@@ -37,11 +44,13 @@ company = [dict(val='北京xxx有限公司',    ky='title.full', desc='公司全
 make build
 ```
 
-To run in Docker after building:
+To run with Docker after building:
 
 ``` bash
 cd target ; docker-compose up -d
 ```
+
+then open [http://localhost:8080](http://localhost:8080) in your browser.
 
 ## Run in dev mode
 
