@@ -1,0 +1,8 @@
+version: "3"
+services:
+  web:
+    image: archlinux
+    volumes:
+      - ./:/opt/camellia
+    ports:
+      - "8080:3122"
