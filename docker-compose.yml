@@ -4,5 +4,7 @@ services:
     image: archlinux
     volumes:
       - ./:/opt/camellia
+    entrypoint: /opt/camellia/be/main
+    working_dir: /opt/camellia/be/
     ports:
       - "8080:3122"
