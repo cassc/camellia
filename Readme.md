@@ -1,19 +1,16 @@
-# A company webstie with Go
+# 使用SQLite数据库的网站引擎
 
 
-<div style="display:flex; justify-content: space-between; align-items: top;">
-  <img src="camellia-1.jpg"/>
-  <img src="camellia-2.jpg"/>
-  <img src="camellia-3.jpg"/>
-</div>
 
-## Requirements
+## 编译环境
 
-You will need to install Go, Python 3 and Node.js.
+Linux系统并安装 Go, Python 3 及 Node.js.
 
-## Build
+## 编译
 
-* Edit company information in `gen-site.py`,
+> 若不需要修改公司信息，编译只需要进行一次。
+
+* 修改 `gen-site.py`的公司信息,
 
 ```python
 # Edit this for new company 
@@ -38,33 +35,54 @@ company = [dict(val='北京xxx有限公司',    ky='title.full', desc='公司全
            ]
 ```
 
-* Run the following command in project directory, use the files in the `target` directory for deployment.
+* 使用`python3 gen-site.py`编译。编译成功后，使用生成的 `target` 目录部署。
+
+* 运行
 
 ``` bash
-make build
+cd target/be ; ./main
 ```
 
-To run with Docker after building:
-
-``` bash
-cd target ; docker-compose up -d
-```
-
-then open [http://localhost:8080](http://localhost:8080) in your browser.
-
-## Run in dev mode
+## 开发
 
 ``` bash
 cd be 
 make dev
 ```
 
-## Test the target build without Docker
+
+# 编辑
+
+* 对于SQLite数据库，可以使用[sqlitebrowser](https://sqlitebrowser.org/dl/)修改，修改前请先备份数据库文件。
+* 对于tmpl模板文件，可以使用文本编辑器如vscode打开编辑。
+
+## 编辑产品
+
+* 添加、修改、删除产品： 编辑 `be/product.db` sqlite数据库 及 `be/templates/products/`文件夹里对应的模板文件。
+* 修改主页展示的产品：修改 `be/templates/index.tmpl`
 
 
-``` bash
-cd target/be 
-./main
-```
+## 编辑方案
 
+编辑方案与编辑产品类似，只是修改的数据库与模板文件夹位置不同。
+
+* 添加、修改、删除方案： 编辑 `be/solution.db` sqlite数据库 及 `be/templates/solutions/`文件夹里对应的模板文件。
+* 修改主页展示的方案：修改 `be/templates/index.tmpl`
+
+## 编辑新闻
+
+
+编辑新闻与编辑产品类似，只是修改的数据库与模板文件夹位置不同。
+
+* 添加、修改、删除新闻： 编辑 `be/news.db` sqlite数据库 及 `be/news/`文件夹里对应的HTML文件。
+
+## 编辑页面及部分页面元素
+
+* 主页：修改 `be/templates/index.tmpl`
+* 导航栏: 修改 `be/templates/nav.tmpl`
+* 页脚: 修改 `be/templates/footer.tmpl` 
+* 联系我们页面: 修改 `be/templates/contactus.tmpl`
+* 关于我们页面: 修改 `be/templates/aboutus.tmpl`
+* 产品中心页面边栏：修改 `be/templates/product-left.tmpl`
+* 解决方案页面边栏：修改 `be/templates/solution-left.tmpl`
 
