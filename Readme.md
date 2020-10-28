@@ -13,7 +13,6 @@ Linux系统并安装 Go, Python 3 及 Node.js.
 * 修改 `gen-site.py`的公司信息,
 
 ```python
-# Edit this for new company 
 company = [dict(val='北京xxx有限公司',    ky='title.full', desc='公司全名'),
            dict(val='xxx',                ky='title.simple', desc='公司简称'),
            dict(val='xxx',                ky='title.en', desc='公司英文简称'),
@@ -31,7 +30,11 @@ company = [dict(val='北京xxx有限公司',    ky='title.full', desc='公司全
            dict(val='javascript:;',       ky='ensite', desc='公司全名'),
 
            # 备案号
-           dict(val='粤ICP备88888888号',  ky='beianhao', desc='公司全名'),           
+           dict(val='粤ICP备88888888号',  ky='beianhao', desc='公司全名'),
+
+           # 电商n链接
+           dict(val='',  ky='shop.title', desc='电商名'),
+           dict(val='',  ky='shop.link', desc='电商链接'),
            ]
 ```
 
